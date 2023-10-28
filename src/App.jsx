@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios"
+import Swal from "sweetalert2";
 import "./App.css"
 
 class App extends React.Component{
@@ -12,13 +13,18 @@ class App extends React.Component{
 
     fetchAdvice = () => {
 
-        axios.get('https://api.adviceslip.com/advice')
+        axios.get('https://api.adviceslip.com/adviceeee')
             .then((response)=>{
                 const {advice} = response.data.slip
                 this.setState({advice:advice})
             })
             .catch((error)=>{
-                console.log("error----", error)
+                Swal.fire({
+                    title: "ERROR",
+                    text: "There is a problem please try again later",
+                    icon: "error",
+                    confirmButtonText: "Ok"
+                })
             })
 
     }
